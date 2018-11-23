@@ -37,6 +37,7 @@
     
     
     
+    
   <url>
     <loc>https://www.welau.top/2016/04/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/</loc>
     <lastmod>2018-09-30T09:44:07.375Z</lastmod>
@@ -54,7 +55,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>https://www.welau.top/2015/12/01/%E6%A0%87%E7%AD%BE%EF%BC%88tags%EF%BC%89%E4%BD%BF%E7%94%A8/</loc>
@@ -137,6 +137,21 @@
 
     
   <url>
+    <loc>https://www.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <data>
+        <display>
+        <title>java 线程同步</title>
+        <pubTime>2016-04-09T14:14:10.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.welau.top/2018/05/08/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/</loc>
     <lastmod>2018-09-30T09:44:07.373Z</lastmod>
     <data>
@@ -155,12 +170,12 @@
 
     
   <url>
-    <loc>https://www.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <loc>https://www.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2018-09-30T09:44:07.372Z</lastmod>
     <data>
         <display>
-        <title>java 线程同步</title>
-        <pubTime>2016-04-09T14:14:10.000Z</pubTime>
+        <title>http和https的区别</title>
+        <pubTime>2017-05-25T03:08:32.000Z</pubTime>
         
          
            
@@ -196,21 +211,6 @@
         
         <tag>hexo 教程</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
-    <lastmod>2018-09-30T09:44:07.372Z</lastmod>
-    <data>
-        <display>
-        <title>http和https的区别</title>
-        <pubTime>2017-05-25T03:08:32.000Z</pubTime>
-        
          
            
         </display>
@@ -378,21 +378,6 @@
 
     
   <url>
-    <loc>https://www.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
-    <lastmod>2018-09-30T09:44:07.359Z</lastmod>
-    <data>
-        <display>
-        <title>SmartRefreshLayout 刷新加载数据（listview，recycleview，webivew...）</title>
-        <pubTime>2018-04-12T03:10:56.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://www.welau.top/2017/11/29/RxJava-Retrofit-%E5%AE%8C%E6%88%90%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/</loc>
     <lastmod>2018-09-30T09:44:07.359Z</lastmod>
     <data>
@@ -414,6 +399,21 @@
         <display>
         <title>Service两种启动方式的区别</title>
         <pubTime>2016-06-20T07:04:02.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
+    <lastmod>2018-09-30T09:44:07.359Z</lastmod>
+    <data>
+        <display>
+        <title>SmartRefreshLayout 刷新加载数据（listview，recycleview，webivew...）</title>
+        <pubTime>2018-04-12T03:10:56.000Z</pubTime>
         
          
            
@@ -517,23 +517,6 @@
 
     
   <url>
-    <loc>https://www.welau.top/2018/05/18/Dagger2%20-%20%E8%BF%9B%E9%98%B6/</loc>
-    <lastmod>2018-09-30T09:44:07.354Z</lastmod>
-    <data>
-        <display>
-        <title>Dagger2 - 进阶</title>
-        <pubTime>2018-05-18T08:22:32.000Z</pubTime>
-        
-        <tag>Dagger2</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://www.welau.top/2017/11/03/DrawerLayout/</loc>
     <lastmod>2018-09-30T09:44:07.354Z</lastmod>
     <data>
@@ -548,6 +531,23 @@
              
               <breadCrumb title="android" url="https://www.welau.top/categories/android/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.welau.top/2018/05/18/Dagger2%20-%20%E8%BF%9B%E9%98%B6/</loc>
+    <lastmod>2018-09-30T09:44:07.354Z</lastmod>
+    <data>
+        <display>
+        <title>Dagger2 - 进阶</title>
+        <pubTime>2018-05-18T08:22:32.000Z</pubTime>
+        
+        <tag>Dagger2</tag>
+         
+         
+           
         </display>
     </data>
     </url>
@@ -638,6 +638,21 @@
 
     
   <url>
+    <loc>https://www.welau.top/2018/05/06/Android-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/</loc>
+    <lastmod>2018-09-30T09:44:07.329Z</lastmod>
+    <data>
+        <display>
+        <title>Android 屏幕适配</title>
+        <pubTime>2018-05-06T13:17:24.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.welau.top/2017/11/08/AppBarLayout/</loc>
     <lastmod>2018-09-30T09:44:07.329Z</lastmod>
     <data>
@@ -661,21 +676,6 @@
         <display>
         <title>Android 性能优化</title>
         <pubTime>2017-05-02T07:19:06.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.welau.top/2018/05/06/Android-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/</loc>
-    <lastmod>2018-09-30T09:44:07.329Z</lastmod>
-    <data>
-        <display>
-        <title>Android 屏幕适配</title>
-        <pubTime>2018-05-06T13:17:24.000Z</pubTime>
         
          
            
