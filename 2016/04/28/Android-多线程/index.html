@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="当我们启动一个App的时候，Android系统会启动一个Linux Process，该Process包含一个Thread，称为UI Thread或Main Thread。通常一个应用的所有组件都运行在这个Process中，当然，也可以通过修改四大组件的android:process属性指定其运行在不同的Process中。 UI Thread中运行着很多重要的逻辑，如系统事件处理，用户输入事件处理，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 多线程">
+<meta property="og:url" content="https://www.welau.top/2016/04/28/Android-多线程/index.html">
+<meta property="og:site_name" content="Snail">
+<meta property="og:description" content="当我们启动一个App的时候，Android系统会启动一个Linux Process，该Process包含一个Thread，称为UI Thread或Main Thread。通常一个应用的所有组件都运行在这个Process中，当然，也可以通过修改四大组件的android:process属性指定其运行在不同的Process中。 UI Thread中运行着很多重要的逻辑，如系统事件处理，用户输入事件处理，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.welau.top/2016/04/28/Android-多线程/1.png">
+<meta property="og:image" content="https://www.welau.top/2016/04/28/Android-多线程/anr.png">
+<meta property="og:image" content="https://www.welau.top/2016/04/28/Android-多线程/handler.png">
+<meta property="og:updated_time" content="2018-09-30T09:44:07.328Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 多线程">
+<meta name="twitter:description" content="当我们启动一个App的时候，Android系统会启动一个Linux Process，该Process包含一个Thread，称为UI Thread或Main Thread。通常一个应用的所有组件都运行在这个Process中，当然，也可以通过修改四大组件的android:process属性指定其运行在不同的Process中。 UI Thread中运行着很多重要的逻辑，如系统事件处理，用户输入事件处理，">
+<meta name="twitter:image" content="https://www.welau.top/2016/04/28/Android-多线程/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '21C9LK82TY',
+      apiKey: 'cbc620cdb8fbb8b5f40b880ed3edaeca',
+      indexName: 'hexoforgit',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与「${query}」相关的内容","hits_stats":"${hits}条相关记录，共耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.welau.top/2016/04/28/Android-多线程/">
+
+
+
+
+
+  <title>Android 多线程 | Snail</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snail</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+		  
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.welau.top/2016/04/28/Android-多线程/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wil Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snail">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android 多线程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-28T09:31:25+08:00">
+                2016-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2016/04/28/Android-多线程/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/04/28/Android-多线程/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当我们启动一个App的时候，Android系统会启动一个Linux Process，该Process包含一个Thread，称为UI Thread或Main Thread。通常一个应用的所有组件都运行在这个Process中，当然，也可以通过修改四大组件的android:process属性指定其运行在不同的Process中。</p>
+<p>UI Thread中运行着很多重要的逻辑，如系统事件处理，用户输入事件处理，UI绘制，Service等,如下图</p>
+<p><img src="/2016/04/28/Android-多线程/1.png" alt="UI Thread中重要逻辑"></p>
+<a id="more"></a>
+<h1 id="ANR"><a href="#ANR" class="headerlink" title="ANR"></a>ANR</h1><p><img src="/2016/04/28/Android-多线程/anr.png" alt="ANR"><br>ANR：全名Application Not Responding，也就是“应用无响应”，当操作在一段时间内系统无法处理时，系统层面会弹出上图那样的ANR对话框。</p>
+<h2 id="为什么会产生ANR"><a href="#为什么会产生ANR" class="headerlink" title="为什么会产生ANR"></a>为什么会产生ANR</h2><p>在Android里，App的响应能力是由Activity Manager和Window Manager系统服务来监控，通常以下两种情况会报ANR：</p>
+<ol>
+<li>5s内无法响应用户输入事件（例如键盘输入、触摸屏幕等）</li>
+<li>BroadcastReceiver在10s内无法结束</li>
+</ol>
+<p>造成以上两种情况的首要原因就是在主线程（UI 线程）里面做了太多的阻塞耗时操作，例如文件读写，数据库读写，网络查询等等。</p>
+<h2 id="如何避免ANR"><a href="#如何避免ANR" class="headerlink" title="如何避免ANR"></a>如何避免ANR</h2><p>知道了ANR发生的原因，那么想要避免ANR，也就很简单了，就一条原则<br><strong>不要在主线程（UI线程）里面做繁重的操作</strong></p>
+<h2 id="ANR的处理"><a href="#ANR的处理" class="headerlink" title="ANR的处理"></a>ANR的处理</h2><p>针对三种不同的情况，一般的处理情况如下</p>
+<ol>
+<li>主线程阻塞：开辟单独的子线程来处理耗时阻塞事务</li>
+<li>CPU满负荷，I/O阻塞：I/O阻塞一般来说就是文件读写或数据库操作执行在主线程了, 也可以通过开辟子线程的方式异步执行.</li>
+<li>内存不够用：增大VM内存, 使用largeHeap属性, 排查内存泄露等.</li>
+</ol>
+<h1 id="Android-常见启动多线程方式"><a href="#Android-常见启动多线程方式" class="headerlink" title="Android 常见启动多线程方式"></a>Android 常见启动多线程方式</h1><p>在新线程执行完耗时的逻辑后，往往需要将结果反馈给界面，进行UI更新。Android的UI toolkit不是线程安全的，不能在非UI线程进行UI的更新，所有对界面的更新必须在UI线程进行。</p>
+<h1 id="Handler-Thread"><a href="#Handler-Thread" class="headerlink" title="Handler + Thread"></a>Handler + Thread</h1><p>Android主线程包含一个消息队列（MessageQueue），该消息队列里面可以存入一系列的Message或Runnable对象。通过一个Handler可以往这个消息队列发送Message或者Runnable对象，并且处理这些对象。每次创建一个Handle对象，它会绑定于创建它的线程（也就是UI线程）以及该线程的消息队列，此时，这个handler就会开始把Message或Runnable对象传递到消息队列中，并在它们出队列的时候执行它们。<br><img src="/2016/04/28/Android-多线程/handler.png" alt="handler"></p>
+<p>Handler发送消息队列有两种方式，Post和sendMessage</p>
+<h2 id="Post方式"><a href="#Post方式" class="headerlink" title="Post方式"></a>Post方式</h2><p>post允许把一个Runnable对象入消息队列中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">post(Runnable)</span><br><span class="line">postAtTime(Runnable,long)</span><br><span class="line">postDelayed(Runnable,long)</span><br></pre></td></tr></table></figure></p>
+<p>在这个Runnable对象中，重写run()方法，一般在这个run()方法中更新UI操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">handler.post(new Runnable()&#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void run()&#123;</span><br><span class="line">		//此处可更细UI</span><br><span class="line">		tv.setText(&quot;handler.post 更新ui&quot;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="sendMessage"><a href="#sendMessage" class="headerlink" title="sendMessage"></a>sendMessage</h2><p>sendMessage允许把一个包含消息数据的Message对象发送到消息队列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sendEmptyMessage(int)</span><br><span class="line">sendMessage(Message)</span><br><span class="line">sendMessageAtTime(Message,long)</span><br><span class="line">sendMessageDelayed(Message,long)</span><br></pre></td></tr></table></figure></p>
+<h2 id="优缺点及适用范围"><a href="#优缺点及适用范围" class="headerlink" title="优缺点及适用范围"></a>优缺点及适用范围</h2><p>优缺点：</p>
+<ol>
+<li>Handler用法简单明了，可以将多个异步任务更新UI的代码放在一起，清晰明了</li>
+<li>处理单个异步任务代码略多</li>
+</ol>
+<p>适用范围</p>
+<ol>
+<li>多个异步任务更新UI</li>
+</ol>
+<h1 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h1><p>AsyncTask是android提供的轻量级的异步类，可以直接继承AsyncTask，在doInBackground()中做耗时操作，onPostExecute()中更新UI。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class DownloadTask extends AsyncTask&lt;Integer, Integer, String&gt;&#123;</span><br><span class="line">	@Override</span><br><span class="line">    protected void onPreExecute() &#123;</span><br><span class="line">        //第一个执行方法</span><br><span class="line">        super.onPreExecute();</span><br><span class="line">    &#125;</span><br><span class="line">	@Override</span><br><span class="line">    protected String doInBackground(Integer... params) &#123;</span><br><span class="line">        //第二个执行方法,onPreExecute()执行完后执行</span><br><span class="line">        return &quot;执行完毕&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">	@Override</span><br><span class="line">    protected void onProgressUpdate(Integer... progress) &#123;</span><br><span class="line">        //这个函数在doInBackground调用publishProgress时触发，虽然调用时只有一个参数</span><br><span class="line">        super.onProgressUpdate(progress);</span><br><span class="line">    &#125;</span><br><span class="line">	@Override</span><br><span class="line">    protected void onPostExecute(String result) &#123;</span><br><span class="line">        //doInBackground返回时触发，换句话说，就是doInBackground执行完后触发</span><br><span class="line">        //这里的result就是上面doInBackground执行后的返回值，所以这里是&quot;执行完毕&quot;</span><br><span class="line">        setTitle(result);</span><br><span class="line">        super.onPostExecute(result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="优缺点及适用范围-1"><a href="#优缺点及适用范围-1" class="headerlink" title="优缺点及适用范围"></a>优缺点及适用范围</h2><p>优缺点：</p>
+<ol>
+<li>处理单个异步任务简单，可以获取到异步任务的进度</li>
+<li>可以通过cancel方法取消还没执行完的AsyncTask</li>
+<li>处理多个异步任务代码显得较多</li>
+</ol>
+<p>适用范围：</p>
+<ol>
+<li>单个异步任务</li>
+</ol>
+<h1 id="ThreadPoolExecutor"><a href="#ThreadPoolExecutor" class="headerlink" title="ThreadPoolExecutor"></a>ThreadPoolExecutor</h1><p>ThreadPoolExecutor提供了一组线程池，可以管理多个线程并行执行。这样可以一方面减少每个并行任务独自建立线程的开销，另一方面可以管理多个并发线程的公共资源，从而提高了多线程的效率。<br>Executors利用工厂模式对ThreadPoolExecutor进行了封装，使用起来更加方便。  </p>
+<p>Executors提供了四种创建方法：</p>
+<ol>
+<li>Executors.newFixedThreadPool() 定长线程池</li>
+<li>Executors.newCachedThreadPool() 可缓存的线程池，当线程池长度超过了处理的需要，它会灵活回收空闲的线程，当需要增加时，它会灵活增加新的线程，不会对池的长度作任何限制</li>
+<li>Executors.newScheduledThreadPool() 定长线程池，支持定时的以及周期性的执行任务，类似Timer</li>
+<li>Executors.newSingleThreadExecutor() 单线程或的executor，它只创建一个worker线程来执行任务</li>
+</ol>
+<h2 id="优缺点及适用范围-2"><a href="#优缺点及适用范围-2" class="headerlink" title="优缺点及适用范围"></a>优缺点及适用范围</h2><p>适用范围：</p>
+<ol>
+<li>批处理任务</li>
+</ol>
+<h1 id="IntentService"><a href="#IntentService" class="headerlink" title="IntentService"></a>IntentService</h1><p>IntentService继承自Service，是一个经过包装的轻量级Service，用来接收并处理通过Intent传递的异步请求。调用startService（Intent）启动一个IntentService，在onHandleIntent中依次处理顺序过来的请求，处理完后自动结束Service。</p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ol>
+<li>可以处理异步任务的简单Service</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #CCC;font-size:14px;">-------------本文结束,感谢阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wx.png" alt="Wil Lau 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.png" alt="Wil Lau 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/21/Activity启动模式及应用场景/" rel="next" title="Activity启动模式及应用场景">
+                <i class="fa fa-chevron-left"></i> Activity启动模式及应用场景
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/19/Junit-单元测试/" rel="prev" title="Junit 单元测试">
+                Junit 单元测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=25d9309761620"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wil Lau">
+            
+              <p class="site-author-name" itemprop="name">Wil Lau</p>
+              <p class="site-description motion-element" itemprop="description">在最高点乘着叶片往前飞</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ANR"><span class="nav-number">1.</span> <span class="nav-text">ANR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么会产生ANR"><span class="nav-number">1.1.</span> <span class="nav-text">为什么会产生ANR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免ANR"><span class="nav-number">1.2.</span> <span class="nav-text">如何避免ANR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ANR的处理"><span class="nav-number">1.3.</span> <span class="nav-text">ANR的处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Android-常见启动多线程方式"><span class="nav-number">2.</span> <span class="nav-text">Android 常见启动多线程方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Handler-Thread"><span class="nav-number">3.</span> <span class="nav-text">Handler + Thread</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Post方式"><span class="nav-number">3.1.</span> <span class="nav-text">Post方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sendMessage"><span class="nav-number">3.2.</span> <span class="nav-text">sendMessage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点及适用范围"><span class="nav-number">3.3.</span> <span class="nav-text">优缺点及适用范围</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AsyncTask"><span class="nav-number">4.</span> <span class="nav-text">AsyncTask</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点及适用范围-1"><span class="nav-number">4.1.</span> <span class="nav-text">优缺点及适用范围</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ThreadPoolExecutor"><span class="nav-number">5.</span> <span class="nav-text">ThreadPoolExecutor</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点及适用范围-2"><span class="nav-number">5.1.</span> <span class="nav-text">优缺点及适用范围</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IntentService"><span class="nav-number">6.</span> <span class="nav-text">IntentService</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">6.1.</span> <span class="nav-text">特点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wil Lau</span>
+
+  <span class="with-love">
+    <i class="fa fa-eye"></i>
+  </span>
+  <span>
+	<span id="busuanzi_value_site_pv"></span>
+  </span>
+  
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytCkaqWY';
+      var conf = '9a06db564cbfa8d2f3c3455b69550b22';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>

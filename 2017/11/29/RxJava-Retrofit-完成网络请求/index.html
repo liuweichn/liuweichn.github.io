@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="RxJava使用介绍一个在Java VM上使用可观测的序列来组成异步的,基于事件的程序的库.简单说它就是一个实现异步操作的库. 观察者模式 观察者: 监视被观察者的行为,当被观察组某个状态改变的时候会通知观察者,观察组执行对应的操作; 被观察者: 被监视的对象 订阅(或注册): 将观察者和被观察者建立联系  例子: 按钮点击事件(OnClickListener中的onClick()事件)  观察者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RxJava + Retrofit 完成网络请求">
+<meta property="og:url" content="https://www.welau.top/2017/11/29/RxJava-Retrofit-完成网络请求/index.html">
+<meta property="og:site_name" content="Snail">
+<meta property="og:description" content="RxJava使用介绍一个在Java VM上使用可观测的序列来组成异步的,基于事件的程序的库.简单说它就是一个实现异步操作的库. 观察者模式 观察者: 监视被观察者的行为,当被观察组某个状态改变的时候会通知观察者,观察组执行对应的操作; 被观察者: 被监视的对象 订阅(或注册): 将观察者和被观察者建立联系  例子: 按钮点击事件(OnClickListener中的onClick()事件)  观察者">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://www.welau.top/2017/11/29/RxJava-Retrofit-完成网络请求/t1.png">
+<meta property="og:updated_time" content="2018-09-30T09:44:07.359Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RxJava + Retrofit 完成网络请求">
+<meta name="twitter:description" content="RxJava使用介绍一个在Java VM上使用可观测的序列来组成异步的,基于事件的程序的库.简单说它就是一个实现异步操作的库. 观察者模式 观察者: 监视被观察者的行为,当被观察组某个状态改变的时候会通知观察者,观察组执行对应的操作; 被观察者: 被监视的对象 订阅(或注册): 将观察者和被观察者建立联系  例子: 按钮点击事件(OnClickListener中的onClick()事件)  观察者">
+<meta name="twitter:image" content="https://www.welau.top/2017/11/29/RxJava-Retrofit-完成网络请求/t1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '21C9LK82TY',
+      apiKey: 'cbc620cdb8fbb8b5f40b880ed3edaeca',
+      indexName: 'hexoforgit',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与「${query}」相关的内容","hits_stats":"${hits}条相关记录，共耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.welau.top/2017/11/29/RxJava-Retrofit-完成网络请求/">
+
+
+
+
+
+  <title>RxJava + Retrofit 完成网络请求 | Snail</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Snail</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+		  
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.welau.top/2017/11/29/RxJava-Retrofit-完成网络请求/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Wil Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Snail">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RxJava + Retrofit 完成网络请求</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-29T15:14:29+08:00">
+                2017-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/11/29/RxJava-Retrofit-完成网络请求/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/11/29/RxJava-Retrofit-完成网络请求/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="RxJava使用"><a href="#RxJava使用" class="headerlink" title="RxJava使用"></a>RxJava使用</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>一个在Java VM上使用可观测的序列来组成异步的,基于事件的程序的库.<br>简单说它就是一个实现异步操作的库.</p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><ol>
+<li>观察者: 监视被观察者的行为,当被观察组某个状态改变的时候会通知观察者,观察组执行对应的操作;</li>
+<li>被观察者: 被监视的对象</li>
+<li>订阅(或注册): 将观察者和被观察者建立联系</li>
+</ol>
+<p>例子: 按钮点击事件(OnClickListener中的onClick()事件)</p>
+<ol>
+<li>观察者: OnClickListener;  </li>
+<li>被观察者: Button;  </li>
+<li>订阅(或注册): setOnClickListener();  </li>
+</ol>
+<p>对应RxJava中</p>
+<ol>
+<li>观察者: Observer;</li>
+<li>被观察者: Observable;</li>
+<li>订阅(或注册): subscribe;</li>
+</ol>
+<h3 id="观察者"><a href="#观察者" class="headerlink" title="观察者"></a>观察者</h3><p>Observer 即观察者,它决定事件触发的时候将有怎样的行为.<br>RxJava 观察者的事件回调方法除了普通事件onNext()[相当于onClick()/onEvent()]之外,还定义了两个特殊的事件:onCompleted()和onError().</p>
+<ol>
+<li>onCompleted() 事件队列完结.RxJava不仅把每个事件单独处理,还会把它们看成一个队列.RxJava规定,当不会再有新的onNext()发出时,需要触发onCompleted()方法作为标示.</li>
+<li>onError() 事件队列异常.在事件处理过程中出现异常时,onError()会被触发,同时队列自动终止,不允许再有事件发出.</li>
+<li>在一个正确运行的事件序列中,onCompleted()和onError()有且只有一个,并且是事件序列中的最后一个.onCompleted()和onError()在队列中只会调用其中一个.</li>
+</ol>
+<h3 id="被观察者"><a href="#被观察者" class="headerlink" title="被观察者"></a>被观察者</h3><p>Observable 即被观察者,它决定什么时候触发事件以及触发怎样的事件.可以使用create(),just(T…),from(T[]),from(Iterable&lt;? extends T&gt;)来创建一个Observable,并为它定义事件触发规则.</p>
+<h3 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h3><p>创建了Observable 和 Observer之后,再用subscribe()方法将他们连接起来</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>1.导包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;io.reactivex:rxjava:1.0.14&apos;</span><br><span class="line">compile &apos;io.reactivex:rxandroid:1.0.1</span><br></pre></td></tr></table></figure></p>
+<p>2.创建一个观察者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Observer&lt;String&gt; observer = new Observer&lt;String&gt;() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onCompleted() &#123;</span><br><span class="line">		Log.i(TAG, &quot;Completed&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void onError(Throwable e) &#123;</span><br><span class="line">		Log.i(TAG, &quot;Error&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void onNext(String s) &#123;</span><br><span class="line">		Log.i(TAG, s);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>3.创建被观察者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Observable observable1 = Observable.create(new  Observable.OnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void call(Subscriber&lt;? super String&gt; subscriber) &#123;</span><br><span class="line">		subscriber.onNext(&quot;Hello&quot;);</span><br><span class="line">		subscriber.onNext(&quot;Wrold&quot;);</span><br><span class="line">		subscriber.onCompleted();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>4.订阅<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">observable1.subscribe(observer);</span><br></pre></td></tr></table></figure></p>
+<p>5.Observable其它几种创建方法</p>
+<ol>
+<li><p>Observable.just()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable observable = Observable.just(&quot;hi&quot;, &quot;le&quot;, &quot;ho&quot;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Observable.from()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = new ArrayList&lt;String&gt;();</span><br><span class="line">list.add(&quot;Hellow&quot;);</span><br><span class="line">list.add(&quot;Wrold&quot;);</span><br><span class="line">String [] words = &#123;&quot;Hello&quot;, &quot;World&quot;&#125;;</span><br><span class="line">Observable observable3 = Observable.from(words|list);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="RxJava-Action-使用"><a href="#RxJava-Action-使用" class="headerlink" title="RxJava Action 使用"></a>RxJava Action 使用</h2><p>回顾上节知识,介绍RxJava基本用法<br>例:分别打印”hello” “world”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(&quot;hello&quot;,&quot;world&quot;)</span><br><span class="line">	.subscribe(new Subscriber&lt;String&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void onCompleted() &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		@Override</span><br><span class="line">		public void onError(Throwable e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		@Override</span><br><span class="line">		public void onNext(String s) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>从上面可以看出我们只用了onNext(obj),还有两个重新的onError()和onCompleted()并没有用到,可是使用Action代替Subscriber.</p>
+<h3 id="Action代替Subscriber"><a href="#Action代替Subscriber" class="headerlink" title="Action代替Subscriber"></a>Action代替Subscriber</h3><p>用Action代替Subscriber<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(&quot;Hello&quot;, &quot;World&quot;)</span><br><span class="line">	.subscribe(new Action1&lt;String&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void call(String s) &#123;</span><br><span class="line">			Log.i(TAG, s);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="RxJava-转换-map-flatMap"><a href="#RxJava-转换-map-flatMap" class="headerlink" title="RxJava 转换 -map -flatMap"></a>RxJava 转换 -map -flatMap</h2><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>在使用map之前先了解一个接口: Func1, Func1和上文的Action1相似.Func1和Action1的区别在于,Func1包装的是有返回值的方法.<br>例: 得到多个Studeng对象中的name,保存到nameList中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(student1, student2, student2)</span><br><span class="line">                //使用map进行转换，参数1：转换前的类型，参数2：转换后的类型</span><br><span class="line">                .map(new Func1&lt;Student, String&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public String call(Student i) &#123;</span><br><span class="line">                        String name = i.getName();//获取Student对象中的name</span><br><span class="line">                        return name;//返回name</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .subscribe(new Action1&lt;String&gt;() &#123;</span><br><span class="line">                    @Override</span><br><span class="line">                    public void call(String s) &#123;</span><br><span class="line">                        nameList.add(s);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>可以看出Observable中原来的参数是Student对象,而最后我们需要的是name,这里使用了map来实现这一转换的过程.map也可以多次使用</p>
+<h3 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h3><p>flatMap是一个比教难理解的一个转换，在这里先假设一个需求，需要打印多个Student所学的课程。这跟之前获取Student的name又不同了，这里先确定一下关系，一个Student类中只有一个name，而一个Student却有多门课程（Course），Student我们可以理解成这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">* 学生类</span><br><span class="line">*/</span><br><span class="line">class Student &#123;</span><br><span class="line">	private String name;//姓名</span><br><span class="line">	private List&lt;Course&gt; coursesList;//所修的课程</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line">* 课程类</span><br><span class="line">*/</span><br><span class="line">class  Course &#123;</span><br><span class="line">	private String name;//课程名</span><br><span class="line">	private String id;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如何使用map实现打印所有学生所修的课程名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Observable.from(students)</span><br><span class="line">	.flatMap(new Func1&lt;Student, Observable&lt;Course&gt;&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public Observable&lt;Course&gt; call(Student student) &#123;</span><br><span class="line">			return Observable.from(student.getCoursesList());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	.subscribe(new Action1&lt;Course&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void call(Course course) &#123;</span><br><span class="line">		Log.i(TAG, course.getName());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="RxJava-线程控制-Scheduler"><a href="#RxJava-线程控制-Scheduler" class="headerlink" title="RxJava 线程控制 - Scheduler"></a>RxJava 线程控制 - Scheduler</h2><p>由Observable发起事件,经过中间的处理后由Observer消费,之前的代码事件发起和消费都是在同一个线程中执行,也就是说之前我们使用的RxJava是同步的<br>而观察者模式本身的目的是后台处理,将处理结果回调给前台<br>上例中flatMap处理是在主线程中进行的,若flatMap中有耗时的操作,这样会导致主线程阻塞  </p>
+<p>Scheduler: 线程控制器,可以指定每一段代码在什么样的线程中执行<br>例: 在新的线程中发起事件,在主线程中消费<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(&quot;Hello&quot;, &quot;Word&quot;)</span><br><span class="line">	.subscribeOn(Schedulers.newThread())//指定 subscribe() 发生在新的线程</span><br><span class="line">	.observeOn(AndroidSchedulers.mainThread())// 指定 Subscriber 的回调发生在主线程</span><br><span class="line">	.subscribe(new Action1&lt;String&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void call(String s) &#123;</span><br><span class="line">			Log.i(TAG, s);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>上面用到了subscribeOn()发起,observeOn()消费<br>subscribeOn()：指定subscribe() 所发生的线程，即 Observable.OnSubscribe 被激活时所处的线程。或者叫做事件产生的线程.<br>observeOn()：指定Subscriber 所运行在的线程。或者叫做事件消费的线程。  </p>
+<p>多次切换线程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(&quot;hello&quot;,&quot;hi&quot;)</span><br><span class="line">	.subscribeOn(Schedulers.newThread())</span><br><span class="line">	.observeOn(Schedulers.io())</span><br><span class="line">	.filter(new Func1&lt;String, Boolean&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public Boolean call(String s) &#123;</span><br><span class="line">			Log.d(TAG,&quot;filter thread: &quot;+Thread.currentThread().getId());</span><br><span class="line">			return true;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	.observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">	.subscribe(new Action1&lt;String&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void call(String s) &#123;</span><br><span class="line">			Log.d(TAG,&quot;Thread: &quot;+Thread.currentThread().getId()+&quot;  &quot;+s);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>可以看出subserveOn()被调用两次,分别指定fliter处理和subscribe消费的线程<br>如果去掉后面的.observeOn(AndroidSchedulers.mainThread()),那么 .subscribe将会在io线程中执行<br>observeOn()可以多次使用，可以随意变换线程</p>
+<h1 id="Retrofit-使用"><a href="#Retrofit-使用" class="headerlink" title="Retrofit 使用"></a>Retrofit 使用</h1><p>Retrofit是Square公司开发的一个类型安全的Java和Android的REST客户端库(A type-safe HTTP client for Android and Java)<br>RestAPI是一种软件设计风格,服务器作为资源存放地.客户端去请求GET POST PUT DELETE…资源.并且是无状态的,没有session的参与.  </p>
+<p>Retrofit模型如下:<br><img src="/2017/11/29/RxJava-Retrofit-完成网络请求/t1.png" alt=""></p>
+<p>1.POJO或模型实体类: 从服务器获取的JSON数据将被填充到这种类的实例中<br>2.接口: 我们需要创建一个接口来管理像GET POST…请求的URL,这是一个服务类.<br>3.RestAdapter类: 这是一个REST客户端(RestClient)类,retrofit中默认用的是Gson来解析JSON数据,你也可以设置自己的JSON解析器.</p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>在发起请求时,主要通过Call来封装每一次的请求;<br>调用同步方法时,会使用应用线程来发送请求;<br>调用异步方法时,会通过 OkHttp 的 <strong>Dispatcher</strong> 提供的线程来执行请求.  </p>
+<p><em>Dispatcher: r内部实现了懒加载无边界限制的线程池方式，同时该线程池采用了SynchronousQueue这种阻塞队列。SynchronousQueue每个插入操作必须等待另一个线程的移除操作，同样任何一个移除操作都等待另一个线程的插入操作。显然这是一种快速传递元素的方式，也就是说在这种情况下元素总是以最快的方式从插入者（生产者）传递给移除者（消费者），这在多任务队列中是最快处理任务的方式。</em></p>
+<h2 id="Retrofit-使用-1"><a href="#Retrofit-使用-1" class="headerlink" title="Retrofit 使用"></a>Retrofit 使用</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作:"></a>准备工作:</h3><p>1.添加依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.squareup.retrofit2:retrofit:2.0.2&apos;</span><br><span class="line">compile &apos;com.squareup.retrofit2:converter-gson:2.0.2&apos;</span><br></pre></td></tr></table></figure></p>
+<p>2.添加权限<br>由于是网络请求,需要添加访问网络权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1.创建实体类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class User &#123;</span><br><span class="line">	private String name;</span><br><span class="line">	private String age;</span><br><span class="line">	public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	public String getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(String age) &#123;</span><br><span class="line">        this.age = ge</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>创建一个User类, name age<br>POJO的转换推荐使用GsonFormat  </p>
+<p>2.创建Retrofit对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit.Builder()</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())//解析方法</span><br><span class="line">	//这里建议：- Base URL: 总是以/结尾；- @Url: 不要以/开头</span><br><span class="line">	.baseUrl(&quot;http://www.xxx.com/&quot;)</span><br><span class="line">	.build();</span><br></pre></td></tr></table></figure></p>
+<p>3.接口申明<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public interface Service &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 根据id获取对应的用户数据</span><br><span class="line">     * 如果不需要转换成Json数据,可以用了ResponseBody;</span><br><span class="line">     * @param id</span><br><span class="line">     * @return call</span><br><span class="line">     */</span><br><span class="line">    @GET(&quot;user/&#123;id&#125;&quot;)</span><br><span class="line">    Call&lt;User&gt; getUser(@Path(&quot;id&quot;) String id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4.创建访问API的请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Service api = retrofit.create(Service .class);</span><br><span class="line">Call&lt;User&gt; call = api.getUser(&quot;123456&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>5.调用<br>5.1 同步调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">News news = call.execute();</span><br></pre></td></tr></table></figure></p>
+<p>5.2 异步调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">call.enqueue(new Callback&lt;News&gt;()&#123;  </span><br><span class="line">	@Override  </span><br><span class="line">	public void onResponse(Response&lt;News&gt; response) &#123;  </span><br><span class="line">		//成功返回数据后在这里处理，使用response.body();获取得到的结果</span><br><span class="line">		News news = response.body();</span><br><span class="line">	&#125;  </span><br><span class="line">	@Override  </span><br><span class="line">	public voidonFailure(Throwable t) &#123;  </span><br><span class="line">		//请求失败在这里处理  </span><br><span class="line">	&#125;  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>6.取消请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">call.cancel();</span><br></pre></td></tr></table></figure></p>
+<h1 id="RxJava-Retrofit-结合使用"><a href="#RxJava-Retrofit-结合使用" class="headerlink" title="RxJava + Retrofit 结合使用"></a>RxJava + Retrofit 结合使用</h1><h2 id="单独使用Retrofit"><a href="#单独使用Retrofit" class="headerlink" title="单独使用Retrofit"></a>单独使用Retrofit</h2><p>1.service接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface MyService &#123;</span><br><span class="line">  @GET(&quot;user/login&quot; )</span><br><span class="line">  Call&lt;UserInfo&gt; login(</span><br><span class="line">          @Query(&quot;username&quot;) String username,</span><br><span class="line">          @Query(&quot;password&quot;) String password</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.获取Call执行网络请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit.Builder()</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.baseUrl(BASE_URL)</span><br><span class="line">	.build();</span><br><span class="line"></span><br><span class="line">MyService service = retrofit.create(MyService.class);</span><br><span class="line"></span><br><span class="line">Call&lt;UserInfo&gt; call = service.login(&quot;1111&quot;, &quot;ssss&quot;);</span><br><span class="line">call.enqueue(new Callback&lt;UserInfo&gt;() &#123;</span><br><span class="line">	@Override</span><br><span class="line">	public void onResponse(Call&lt;UserInfo&gt; call, Response&lt;UserInfo&gt; response) &#123;</span><br><span class="line">		//请求成功操作</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void onFailure(Call&lt;UserInfo&gt; call, Throwable t) &#123;</span><br><span class="line">		//请求失败操作</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="RxJava-Retrofit-完成网络请求"><a href="#RxJava-Retrofit-完成网络请求" class="headerlink" title="RxJava + Retrofit 完成网络请求"></a>RxJava + Retrofit 完成网络请求</h2><p>1.添加依赖 前四个分别是RxJava、RxAndroid、Retrofit以及Gson的库，最后那个才是新加入的，RxJava + Retrofit的使用需要用到最后那个包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;io.reactivex:rxjava:x.y.z&apos;</span><br><span class="line">compile &apos;io.reactivex:rxandroid:1.0.1&apos;</span><br><span class="line">compile &apos;com.squareup.retrofit2:retrofit:2.0.2&apos;</span><br><span class="line">compile &apos;com.squareup.retrofit2:converter-gson:2.0.2&apos;</span><br><span class="line">compile &apos;com.squareup.retrofit2:adapter-rxjava:2.0.2&apos;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意: 最后三个包的版本号必须一样</strong><br>2.修改service(Call改为Observable)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface MyService &#123;</span><br><span class="line">  @GET(&quot;user/login&quot; )</span><br><span class="line">  Observable&lt;UserInfo&gt; login(</span><br><span class="line">          @Query(&quot;username&quot;) String username,</span><br><span class="line">          @Query(&quot;password&quot;) String password</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>3.网络请求<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = new Retrofit.Builder()</span><br><span class="line">	.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">	.baseUrl(BASE_URL)</span><br><span class="line">	.build();</span><br><span class="line"></span><br><span class="line">MyService service = retrofit.create(MyService.class);</span><br><span class="line"></span><br><span class="line">service.loging(username,password)</span><br><span class="line">	.subscribeOn(Schedulers.newThread())//请求在新的线程中执行</span><br><span class="line">	.observeOn(Schedulers.io())         //请求完成后在io线程中执行</span><br><span class="line">	.doOnNext(new Action1&lt;UserInfo&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void call(UserInfo userInfo) &#123;</span><br><span class="line">			saveUserInfo(userInfo);//保存用户信息到本地</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	.observeOn(AndroidSchedulers.mainThread())//最后在主线程中执行</span><br><span class="line">	.subscribe(new Subscriber&lt;UserInfo&gt;() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public void onCompleted() &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		@Override</span><br><span class="line">		public void onError(Throwable e) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">		@Override</span><br><span class="line">		public void onNext(UserInfo userInfo) &#123;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>Retrofit把请求封装进Observable,在请求结束后调用onNext() onError() 或 onCompleted().<br>在调用service的login方法后得到Observable对象, .subscribeOn(Scheduler.newThread())在新的线程中执行网络请求,请求成功后切换到io线程执行保存用户信息动作,最后再切换到主线程执行请求失败,成功动作.<br>整体逻辑都在一条链中,即使有变更也好添加修改.逻辑清晰.</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a href="http://www.jianshu.com/p/1fb294ec7e3b" target="_blank" rel="noopener">【Android】RxJava + Retrofit完成网络请求</a></p>
+
+      
+    </div>
+    
+    
+    
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #CCC;font-size:14px;">-------------本文结束,感谢阅读-------------</div>
+    
+</div>
+	  
+	</div>
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wx.png" alt="Wil Lau 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.png" alt="Wil Lau 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/09/RecyclerView/" rel="next" title="RecyclerView">
+                <i class="fa fa-chevron-left"></i> RecyclerView
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/06/Retrofit-RxJava-OkHttp基础篇/" rel="prev" title="Retrofit-RxJava-OkHttp基础篇">
+                Retrofit-RxJava-OkHttp基础篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="-mob-share-ui-button -mob-share-open">分享</div>
+<div class="-mob-share-ui" style="display: none">
+    <ul class="-mob-share-list">
+        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
+        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+        <li class="-mob-share-qq"><p>QQ好友</p></li>
+        <li class="-mob-share-renren"><p>人人网</p></li>
+        <li class="-mob-share-kaixin"><p>开心网</p></li>
+        <li class="-mob-share-douban"><p>豆瓣</p></li>
+        <li class="-mob-share-facebook"><p>Facebook</p></li>
+        <li class="-mob-share-twitter"><p>Twitter</p></li>
+    </ul>
+    <div class="-mob-share-close">取消</div>
+</div>
+<div class="-mob-share-ui-bg"></div>
+<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=25d9309761620"></script>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="Wil Lau">
+            
+              <p class="site-author-name" itemprop="name">Wil Lau</p>
+              <p class="site-description motion-element" itemprop="description">在最高点乘着叶片往前飞</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RxJava使用"><span class="nav-number">1.</span> <span class="nav-text">RxJava使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式"><span class="nav-number">1.2.</span> <span class="nav-text">观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者"><span class="nav-number">1.2.1.</span> <span class="nav-text">观察者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#被观察者"><span class="nav-number">1.2.2.</span> <span class="nav-text">被观察者</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#订阅"><span class="nav-number">1.2.3.</span> <span class="nav-text">订阅</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">1.3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RxJava-Action-使用"><span class="nav-number">1.4.</span> <span class="nav-text">RxJava Action 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Action代替Subscriber"><span class="nav-number">1.4.1.</span> <span class="nav-text">Action代替Subscriber</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RxJava-转换-map-flatMap"><span class="nav-number">1.5.</span> <span class="nav-text">RxJava 转换 -map -flatMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">1.5.1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flatMap"><span class="nav-number">1.5.2.</span> <span class="nav-text">flatMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RxJava-线程控制-Scheduler"><span class="nav-number">1.6.</span> <span class="nav-text">RxJava 线程控制 - Scheduler</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Retrofit-使用"><span class="nav-number">2.</span> <span class="nav-text">Retrofit 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit-使用-1"><span class="nav-number">2.2.</span> <span class="nav-text">Retrofit 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">2.2.1.</span> <span class="nav-text">准备工作:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤"><span class="nav-number">2.2.2.</span> <span class="nav-text">步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxJava-Retrofit-结合使用"><span class="nav-number">3.</span> <span class="nav-text">RxJava + Retrofit 结合使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单独使用Retrofit"><span class="nav-number">3.1.</span> <span class="nav-text">单独使用Retrofit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RxJava-Retrofit-完成网络请求"><span class="nav-number">3.2.</span> <span class="nav-text">RxJava + Retrofit 完成网络请求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#引用"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wil Lau</span>
+
+  <span class="with-love">
+    <i class="fa fa-eye"></i>
+  </span>
+  <span>
+	<span id="busuanzi_value_site_pv"></span>
+  </span>
+  
+  
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytCkaqWY';
+      var conf = '9a06db564cbfa8d2f3c3455b69550b22';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    var trElement = document.getElementById('hexo-helper-live2d');
+    trElement.parentNode.removeChild(trElement);
+    return;
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/wanko.model.json", 0.5);});
+})();
+</script>
+
+</body>
+</html>
