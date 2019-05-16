@@ -183,21 +183,6 @@
 
     
   <url>
-    <loc>https://www.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
-    <data>
-        <display>
-        <title>java 线程同步</title>
-        <pubTime>2016-04-09T14:14:10.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://www.welau.top/2018/05/08/robolectric-%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2018-09-30T09:44:07.373Z</lastmod>
     <data>
@@ -231,6 +216,21 @@
 
     
   <url>
+    <loc>https://www.welau.top/2016/05/23/%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E8%AE%B2%E8%A7%A3/</loc>
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <data>
+        <display>
+        <title>基本知识讲解</title>
+        <pubTime>2016-05-23T02:27:14.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.welau.top/2018/05/08/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/</loc>
     <lastmod>2018-09-30T09:44:07.373Z</lastmod>
     <data>
@@ -249,30 +249,13 @@
 
     
   <url>
-    <loc>https://www.welau.top/2016/05/23/%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E8%AE%B2%E8%A7%A3/</loc>
+    <loc>https://www.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
     <lastmod>2018-09-30T09:44:07.373Z</lastmod>
     <data>
         <display>
-        <title>基本知识讲解</title>
-        <pubTime>2016-05-23T02:27:14.000Z</pubTime>
+        <title>java 线程同步</title>
+        <pubTime>2016-04-09T14:14:10.000Z</pubTime>
         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.welau.top/2015/11/05/hexo-%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87/</loc>
-    <lastmod>2018-09-30T09:44:07.372Z</lastmod>
-    <data>
-        <display>
-        <title>hexo 引用图片</title>
-        <pubTime>2015-11-05T08:22:03.000Z</pubTime>
-        
-        <tag>hexo 教程</tag>
-         
          
            
         </display>
@@ -313,20 +296,17 @@
 
     
   <url>
-    <loc>https://www.welau.top/2017/11/02/android-material-design%E7%BB%84%E4%BB%B6%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2018-09-30T09:44:07.369Z</lastmod>
+    <loc>https://www.welau.top/2015/11/05/hexo-%E5%BC%95%E7%94%A8%E5%9B%BE%E7%89%87/</loc>
+    <lastmod>2018-09-30T09:44:07.372Z</lastmod>
     <data>
         <display>
-        <title>android material design组件学习</title>
-        <pubTime>2017-11-02T03:43:17.000Z</pubTime>
+        <title>hexo 引用图片</title>
+        <pubTime>2015-11-05T08:22:03.000Z</pubTime>
         
-        <tag>material design组件学习</tag>
+        <tag>hexo 教程</tag>
          
          
            
-             
-              <breadCrumb title="android" url="https://www.welau.top/categories/android/"/>
-          
         </display>
     </data>
     </url>
@@ -360,6 +340,26 @@
         
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.welau.top/2017/11/02/android-material-design%E7%BB%84%E4%BB%B6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2018-09-30T09:44:07.369Z</lastmod>
+    <data>
+        <display>
+        <title>android material design组件学习</title>
+        <pubTime>2017-11-02T03:43:17.000Z</pubTime>
+        
+        <tag>material design组件学习</tag>
+         
+         
+           
+             
+              <breadCrumb title="android" url="https://www.welau.top/categories/android/"/>
+          
         </display>
     </data>
     </url>
@@ -472,12 +472,12 @@
 
     
   <url>
-    <loc>https://www.welau.top/2016/06/20/Service%E4%B8%A4%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <loc>https://www.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
     <lastmod>2018-09-30T09:44:07.359Z</lastmod>
     <data>
         <display>
-        <title>Service两种启动方式的区别</title>
-        <pubTime>2016-06-20T07:04:02.000Z</pubTime>
+        <title>SmartRefreshLayout 刷新加载数据（listview，recycleview，webivew...）</title>
+        <pubTime>2018-04-12T03:10:56.000Z</pubTime>
         
          
            
@@ -502,12 +502,12 @@
 
     
   <url>
-    <loc>https://www.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
+    <loc>https://www.welau.top/2016/06/20/Service%E4%B8%A4%E7%A7%8D%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     <lastmod>2018-09-30T09:44:07.359Z</lastmod>
     <data>
         <display>
-        <title>SmartRefreshLayout 刷新加载数据（listview，recycleview，webivew...）</title>
-        <pubTime>2018-04-12T03:10:56.000Z</pubTime>
+        <title>Service两种启动方式的区别</title>
+        <pubTime>2016-06-20T07:04:02.000Z</pubTime>
         
          
            
@@ -562,14 +562,14 @@
 
     
   <url>
-    <loc>https://www.welau.top/2017/11/07/FloatingActionButton/</loc>
+    <loc>https://www.welau.top/2017/05/27/GreenDao-%E4%BD%BF%E7%94%A8/</loc>
     <lastmod>2018-09-30T09:44:07.356Z</lastmod>
     <data>
         <display>
-        <title>FloatingActionButton</title>
-        <pubTime>2017-11-07T03:02:49.000Z</pubTime>
+        <title>GreenDao 使用</title>
+        <pubTime>2017-05-27T06:54:30.000Z</pubTime>
         
-        <tag>material design组件学习</tag>
+        <tag>框架</tag>
          
          
            
@@ -579,14 +579,14 @@
 
     
   <url>
-    <loc>https://www.welau.top/2017/05/27/GreenDao-%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://www.welau.top/2017/11/07/FloatingActionButton/</loc>
     <lastmod>2018-09-30T09:44:07.356Z</lastmod>
     <data>
         <display>
-        <title>GreenDao 使用</title>
-        <pubTime>2017-05-27T06:54:30.000Z</pubTime>
+        <title>FloatingActionButton</title>
+        <pubTime>2017-11-07T03:02:49.000Z</pubTime>
         
-        <tag>框架</tag>
+        <tag>material design组件学习</tag>
          
          
            
@@ -732,21 +732,6 @@
 
     
   <url>
-    <loc>https://www.welau.top/2018/05/06/Android-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/</loc>
-    <lastmod>2018-09-30T09:44:07.329Z</lastmod>
-    <data>
-        <display>
-        <title>Android 屏幕适配</title>
-        <pubTime>2018-05-06T13:17:24.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://www.welau.top/2017/11/08/AppBarLayout/</loc>
     <lastmod>2018-09-30T09:44:07.329Z</lastmod>
     <data>
@@ -770,6 +755,21 @@
         <display>
         <title>Android 性能优化</title>
         <pubTime>2017-05-02T07:19:06.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.welau.top/2018/05/06/Android-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/</loc>
+    <lastmod>2018-09-30T09:44:07.329Z</lastmod>
+    <data>
+        <display>
+        <title>Android 屏幕适配</title>
+        <pubTime>2018-05-06T13:17:24.000Z</pubTime>
         
          
            
