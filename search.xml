@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Kotlin 基础语法]]></title>
     <url>%2F2019%2F05%2F10%2FKotlin-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[函数定义；可变长参数函数；lambda（匿名函数）；常量变量；注释；字符串模版；]]></content>
+    <content type="text"><![CDATA[函数定义；可变长参数函数；lambda（匿名函数）；常量变量；注释；字符串模版；NULL检查机制；类型检测及自动转换；区间 函数定义关键字fun，参数格式为：参数：类型1234567891011fun sum(a: Int, b: Int): Int &#123; return a + b&#125;//表达式作为函数体fun sum1(a: Int, b: Int): Int = a + b//无返回值的函数： Unitfun PrintSum(a: Int): Unit &#123; print(a)&#125; 可变长度参数关键字：vararg1234fun vars(vararg v: String) &#123; for(vt in v) print(vt)&#125; lambad（匿名函数）1234fun lambadDemo()&#123; val sumLambad: (Int, Int) -&gt; Int = &#123;x, y -&gt; x + y&#125; print(sumLambad(2, 3)) //输出5&#125; 定义变量常量var 关键字 //变量var &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;1var a : Int = 1 val 关键字 //常量val &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;1val a : Int = 1 注释单行注视1//这是单行注视 多行注释123/* 这是 多行注释*/ 字符串模版$ 表示一个变量名或变量值$varName 表示变量值${varName.fun()} 表示变量的方法返回值1234567891011var a = 1//模版中的简单名称val s1 = &quot;a is $a&quot;a = 2//模版中的任意表达式val s2 = &quot;$&#123;s1.replace(&quot;is&quot;,&quot;was&quot;)&#125;, but now is $a&quot;//输出： a was 1, but now is 2]]></content>
       <tags>
         <tag>Kotlin</tag>
       </tags>
