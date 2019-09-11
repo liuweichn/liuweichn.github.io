@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Kotlin,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="函数定义；可变长参数函数；lambda（匿名函数）；常量变量；注释；字符串模版；NULL检查机制；类型检测及自动转换；区间">
-<meta name="keywords" content="Kotlin">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Kotlin 基础语法">
-<meta property="og:url" content="https://www.welau.top/2019/05/10/Kotlin-基础语法/index.html">
+<meta name="description" content="在最高点乘着叶片往前飞">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Snail">
+<meta property="og:url" content="https://www.welau.top/page/6/index.html">
 <meta property="og:site_name" content="Snail">
-<meta property="og:description" content="函数定义；可变长参数函数；lambda（匿名函数）；常量变量；注释；字符串模版；NULL检查机制；类型检测及自动转换；区间">
+<meta property="og:description" content="在最高点乘着叶片往前飞">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-17T03:44:16.177Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kotlin 基础语法">
-<meta name="twitter:description" content="函数定义；可变长参数函数；lambda（匿名函数）；常量变量；注释；字符串模版；NULL检查机制；类型检测及自动转换；区间">
+<meta name="twitter:title" content="Snail">
+<meta name="twitter:description" content="在最高点乘着叶片往前飞">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://www.welau.top/2019/05/10/Kotlin-基础语法/">
+  <link rel="canonical" href="https://www.welau.top/page/6/">
 
 
 
 
 
-  <title>Kotlin 基础语法 | Snail</title>
+  <title>Snail</title>
   
 
 
@@ -145,7 +143,8 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -280,9 +279,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -295,7 +294,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.welau.top/2019/05/10/Kotlin-基础语法/">
+    <link itemprop="mainEntityOfPage" href="https://www.welau.top/2015/10/30/hexo命令/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wil Lau">
@@ -312,7 +311,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Kotlin 基础语法</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/10/30/hexo命令/" itemprop="url">hexo常用命令</a></h1>
         
 
         <div class="post-meta">
@@ -324,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-10T15:38:27+08:00">
-                2019-05-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-30T09:59:03+08:00">
+                2015-10-30
               </time>
             
 
@@ -344,8 +345,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2019/05/10/Kotlin-基础语法/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2019/05/10/Kotlin-基础语法/" itemprop="commentsCount"></span>
+                <a href="/2015/10/30/hexo命令/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::https://www.welau.top/2015/10/30/hexo命令/" class="cy_cmt_count" data-xid="2015/10/30/hexo命令/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -373,19 +374,20 @@
       
 
       
-        <p>函数定义；可变长参数函数；lambda（匿名函数）；常量变量；注释；字符串模版；NULL检查机制；类型检测及自动转换；区间<br><a id="more"></a></p>
-<h1 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h1><p>关键字fun，参数格式为：参数：类型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fun sum(a: Int, b: Int): Int &#123;</span><br><span class="line">	return a + b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//表达式作为函数体</span><br><span class="line">fun sum1(a: Int, b: Int): Int = a + b</span><br><span class="line"></span><br><span class="line">//无返回值的函数： Unit</span><br><span class="line">fun PrintSum(a: Int): Unit &#123;</span><br><span class="line">	print(a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="可变长度参数"><a href="#可变长度参数" class="headerlink" title="可变长度参数"></a>可变长度参数</h1><p>关键字：vararg<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun vars(vararg v: String) &#123;</span><br><span class="line">	for(vt in v)</span><br><span class="line">		print(vt)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="lambad（匿名函数）"><a href="#lambad（匿名函数）" class="headerlink" title="lambad（匿名函数）"></a>lambad（匿名函数）</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fun lambadDemo()&#123;</span><br><span class="line">	val sumLambad: (Int, Int) -&gt; Int = &#123;x, y -&gt; x + y&#125;</span><br><span class="line">	print(sumLambad(2, 3)) //输出5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="定义变量常量"><a href="#定义变量常量" class="headerlink" title="定义变量常量"></a>定义变量常量</h1><p>var 关键字 //变量<br>var &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a : Int = 1</span><br></pre></td></tr></table></figure></p>
-<p>val 关键字 //常量<br>val &lt;标识符&gt; : &lt;类型&gt; = &lt;初始化值&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val a : Int = 1</span><br></pre></td></tr></table></figure></p>
-<h1 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h1><p>单行注视<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//这是单行注视</span><br></pre></td></tr></table></figure></p>
-<p>多行注释<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/* 这是</span><br><span class="line">	多行注释</span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
-<h1 id="字符串模版"><a href="#字符串模版" class="headerlink" title="字符串模版"></a>字符串模版</h1><p>$ 表示一个变量名或变量值<br>$varName 表示变量值<br>${varName.fun()} 表示变量的方法返回值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var a = 1</span><br><span class="line"></span><br><span class="line">//模版中的简单名称</span><br><span class="line">val s1 = &quot;a is $a&quot;</span><br><span class="line"></span><br><span class="line">a = 2</span><br><span class="line"></span><br><span class="line">//模版中的任意表达式</span><br><span class="line">val s2 = &quot;$&#123;s1.replace(&quot;is&quot;,&quot;was&quot;)&#125;, but now is $a&quot;</span><br><span class="line"></span><br><span class="line">//输出： a was 1, but now is 2</span><br></pre></td></tr></table></figure></p>
-<h1 id="NULL检查机制"><a href="#NULL检查机制" class="headerlink" title="NULL检查机制"></a>NULL检查机制</h1><p>Kotlin的空安全设计对于声明可为空的参数，在使用时要进行空判断处理，有两种处理方式，字段后加 !! 像java一样抛出空异常，另一种字段后加 ? 可不做处理返回值为null或配合 ?: 作空判断处理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//类型后面加 ? 表示可为空</span><br><span class="line">var age: String? = &quot;23&quot;</span><br><span class="line">age = null</span><br><span class="line"></span><br><span class="line">//抛出空指针异常</span><br><span class="line">val ages = age!!.toInt()</span><br><span class="line"></span><br><span class="line">//不做处理返回null</span><br><span class="line">val age1 = age?.toInt()</span><br><span class="line"></span><br><span class="line">//为空返回-1</span><br><span class="line">val age2 = age?.toInt() ?: -1</span><br></pre></td></tr></table></figure></p>
-<h1 id="类型检测及自动类型转换"><a href="#类型检测及自动类型转换" class="headerlink" title="类型检测及自动类型转换"></a>类型检测及自动类型转换</h1><p>使用 is 运算符检测是否为某种类型（类似于java的instanceof关键字）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fun getStrLength(obj: Any): Int?&#123;</span><br><span class="line">	if(obj is String)</span><br><span class="line">		return obj.length</span><br><span class="line">	return null</span><br><span class="line">&#125;</span><br><span class="line">//或者 !is</span><br><span class="line">fun getStrLength(obj: Any): Int?&#123;</span><br><span class="line">	if(obj !is String)</span><br><span class="line">		return null</span><br><span class="line">	//这个分支中，obj 会被自动转换为 String</span><br><span class="line">	return obj.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="区间"><a href="#区间" class="headerlink" title="区间"></a>区间</h1><p>区间表达式由具有操作符 .. 的范围形式辅以in组合；<br>区间是为任何可比较类型定义的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(i in 1..4) print(i) //输出1234</span><br><span class="line">for(i in 4 downTo 1) print(i) //输出4321</span><br><span class="line">for(i in 1..4 step 2) print(i) //输出13，步长为2</span><br><span class="line">for(i in 1 until 4) print(i) //输出123，[1,4)含左不含右</span><br></pre></td></tr></table></figure></p>
-
+        
+          
+          本文介绍hexo的常用命令。  
+hexonpm install hexo -g #安装npm update hexo -g #升级npm init #初始化 
+服务器hexo s #启动服务预览并自动更新，无需重启服务器hexo server -s #静态模式hexo server -p 5000 #更改端口hexo server -i 192.168.1.1 #自定义IPhexo clean #清理缓存hexo g #生成静态网页h
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/10/30/hexo命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -394,85 +396,24 @@
 	
 	<div>
 	  
-		<div>
-    
-        <div style="text-align:center;color: #CCC;font-size:14px;">-------------本文结束,感谢阅读-------------</div>
-    
-</div>
-	  
 	</div>
 
     
 
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>打赏</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wx.png" alt="Wil Lau 微信支付">
-        <p>微信支付</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/zfb.png" alt="Wil Lau 支付宝">
-        <p>支付宝</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
     
 
     
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/05/10/Kotlin-教程/" rel="next" title="Kotlin 教程">
-                <i class="fa fa-chevron-left"></i> Kotlin 教程
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/17/Kotlin-基本数据类型/" rel="prev" title="Kotlin 基本数据类型">
-                Kotlin 基本数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -482,29 +423,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-        <div class="-mob-share-ui-button -mob-share-open">分享</div>
-<div class="-mob-share-ui" style="display: none">
-    <ul class="-mob-share-list">
-        <li class="-mob-share-weibo"><p>新浪微博</p></li>
-        <li class="-mob-share-tencentweibo"><p>腾讯微博</p></li>
-        <li class="-mob-share-qzone"><p>QQ空间</p></li>
-        <li class="-mob-share-qq"><p>QQ好友</p></li>
-        <li class="-mob-share-renren"><p>人人网</p></li>
-        <li class="-mob-share-kaixin"><p>开心网</p></li>
-        <li class="-mob-share-douban"><p>豆瓣</p></li>
-        <li class="-mob-share-facebook"><p>Facebook</p></li>
-        <li class="-mob-share-twitter"><p>Twitter</p></li>
-    </ul>
-    <div class="-mob-share-close">取消</div>
-</div>
-<div class="-mob-share-ui-bg"></div>
-<script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=25d9309761620"></script>
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
 
 
           </div>
@@ -512,15 +438,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="SOHUCS"></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -541,17 +458,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -615,22 +523,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#函数定义"><span class="nav-number">1.</span> <span class="nav-text">函数定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可变长度参数"><span class="nav-number">2.</span> <span class="nav-text">可变长度参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lambad（匿名函数）"><span class="nav-number">3.</span> <span class="nav-text">lambad（匿名函数）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义变量常量"><span class="nav-number">4.</span> <span class="nav-text">定义变量常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注释"><span class="nav-number">5.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串模版"><span class="nav-number">6.</span> <span class="nav-text">字符串模版</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NULL检查机制"><span class="nav-number">7.</span> <span class="nav-text">NULL检查机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型检测及自动类型转换"><span class="nav-number">8.</span> <span class="nav-text">类型检测及自动类型转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区间"><span class="nav-number">9.</span> <span class="nav-text">区间</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -761,10 +653,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
 
   
 
@@ -799,18 +687,7 @@
 
 
   
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cytCkaqWY';
-      var conf = '9a06db564cbfa8d2f3c3455b69550b22';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytCkaqWY"></script>
   
 
 
