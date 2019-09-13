@@ -1,5 +1,5 @@
-https://www.welau.top/2019/09/11/mac-8080端口被占用/
-https://www.welau.top/2019/05/17/Kotlin-基本数据类型/
-https://www.welau.top/2019/05/10/Kotlin-基础语法/
-https://www.welau.top/2019/05/10/Kotlin-教程/
-https://www.welau.top/2019/04/29/Spring-Boot-2-Web综合开发/
+https://www.welau.top/2019/09/13/CentOs-安装MySql、Java/
+https://www.welau.top/2019/09/12/Spring-Boot测试打包发布/
+https://www.welau.top/2019/09/12/Spring-boot-Jpa的使用/
+https://www.welau.top/2019/09/12/Spring-Boot-MySql操作/
+https://www.welau.top/2019/09/11/Gradle-初始化Spring-boot项目/

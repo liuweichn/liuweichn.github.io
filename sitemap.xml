@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.welau.top/2019/09/13/CentOs-%E5%AE%89%E8%A3%85MySql%E3%80%81Java/</loc>
+    
+    <lastmod>2019-09-13T05:45:54.850Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2019/09/12/Spring-Boot%E6%B5%8B%E8%AF%95%E6%89%93%E5%8C%85%E5%8F%91%E5%B8%83/</loc>
+    
+    <lastmod>2019-09-12T09:15:30.086Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2019/09/12/Spring-boot-Jpa%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2019-09-12T07:23:27.646Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2019/09/12/Spring-Boot-MySql%E6%93%8D%E4%BD%9C/</loc>
+    
+    <lastmod>2019-09-12T02:34:16.381Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2019/04/29/Spring-Boot-2-Web%E7%BB%BC%E5%90%88%E5%BC%80%E5%8F%91/</loc>
+    
+    <lastmod>2019-09-12T01:33:01.797Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2019/09/11/Gradle-%E5%88%9D%E5%A7%8B%E5%8C%96Spring-boot%E9%A1%B9%E7%9B%AE/</loc>
+    
+    <lastmod>2019-09-12T01:32:46.580Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2019/04/29/Spring-Boot-1-%E5%85%A5%E9%97%A8/</loc>
+    
+    <lastmod>2019-09-12T01:32:40.570Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.welau.top/2019/09/11/mac-8080%E7%AB%AF%E5%8F%A3%E8%A2%AB%E5%8D%A0%E7%94%A8/</loc>
     
     <lastmod>2019-09-11T06:48:15.205Z</lastmod>
@@ -33,20 +82,6 @@
     <loc>https://www.welau.top/2019/05/10/Kotlin-%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2019-05-10T07:38:05.864Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.welau.top/2019/04/29/Spring-Boot-2-Web%E7%BB%BC%E5%90%88%E5%BC%80%E5%8F%91/</loc>
-    
-    <lastmod>2019-05-10T06:31:32.162Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.welau.top/2019/04/29/Spring-Boot-1-%E5%85%A5%E9%97%A8/</loc>
-    
-    <lastmod>2019-04-29T06:26:58.287Z</lastmod>
     
   </url>
   
@@ -86,13 +121,6 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/categories/index.html</loc>
-    
-    <lastmod>2018-09-30T09:44:07.375Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.welau.top/2016/04/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/</loc>
     
     <lastmod>2018-09-30T09:44:07.375Z</lastmod>
@@ -100,9 +128,9 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2016/05/28/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://www.welau.top/categories/index.html</loc>
     
-    <lastmod>2018-09-30T09:44:07.374Z</lastmod>
+    <lastmod>2018-09-30T09:44:07.375Z</lastmod>
     
   </url>
   
@@ -114,16 +142,9 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2016/07/07/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://www.welau.top/2016/05/28/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
     
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.welau.top/2018/05/08/robolectric-%E6%B5%8B%E8%AF%95/</loc>
-    
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <lastmod>2018-09-30T09:44:07.374Z</lastmod>
     
   </url>
   
@@ -142,6 +163,20 @@
   </url>
   
   <url>
+    <loc>https://www.welau.top/2016/07/07/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2018/05/08/robolectric-%E6%B5%8B%E8%AF%95/</loc>
+    
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
     
     <lastmod>2018-09-30T09:44:07.373Z</lastmod>
@@ -149,14 +184,14 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2015/10/30/hexo%E5%91%BD%E4%BB%A4/</loc>
+    <loc>https://www.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     
     <lastmod>2018-09-30T09:44:07.372Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <loc>https://www.welau.top/2015/10/30/hexo%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2018-09-30T09:44:07.372Z</lastmod>
     
@@ -170,14 +205,14 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/02/android-material-design%E7%BB%84%E4%BB%B6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://www.welau.top/2016/06/16/UML-%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80/</loc>
     
     <lastmod>2018-09-30T09:44:07.369Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.welau.top/2016/06/16/UML-%E7%BB%9F%E4%B8%80%E5%BB%BA%E6%A8%A1%E8%AF%AD%E8%A8%80/</loc>
+    <loc>https://www.welau.top/2015/11/05/hexo-next%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2/</loc>
     
     <lastmod>2018-09-30T09:44:07.369Z</lastmod>
     
@@ -191,14 +226,14 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/02/android-material-design/</loc>
+    <loc>https://www.welau.top/2017/11/02/android-material-design%E7%BB%84%E4%BB%B6%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2018-09-30T09:44:07.369Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.welau.top/2015/11/05/hexo-next%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2/</loc>
+    <loc>https://www.welau.top/2017/11/02/android-material-design/</loc>
     
     <lastmod>2018-09-30T09:44:07.369Z</lastmod>
     
@@ -219,14 +254,14 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/07/Snackbar/</loc>
+    <loc>https://www.welau.top/2017/11/07/TabLayout/</loc>
     
     <lastmod>2018-09-30T09:44:07.361Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/07/TabLayout/</loc>
+    <loc>https://www.welau.top/2017/11/07/Snackbar/</loc>
     
     <lastmod>2018-09-30T09:44:07.361Z</lastmod>
     
@@ -261,13 +296,6 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/09/RecyclerView/</loc>
-    
-    <lastmod>2018-09-30T09:44:07.357Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.welau.top/2016/05/19/Junit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2018-09-30T09:44:07.357Z</lastmod>
@@ -275,14 +303,21 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/07/FloatingActionButton/</loc>
+    <loc>https://www.welau.top/2017/11/09/RecyclerView/</loc>
+    
+    <lastmod>2018-09-30T09:44:07.357Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2017/05/27/GreenDao-%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2018-09-30T09:44:07.356Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/05/27/GreenDao-%E4%BD%BF%E7%94%A8/</loc>
+    <loc>https://www.welau.top/2017/11/07/FloatingActionButton/</loc>
     
     <lastmod>2018-09-30T09:44:07.356Z</lastmod>
     
@@ -310,14 +345,14 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/08/CoordinatorLayout/</loc>
+    <loc>https://www.welau.top/2018/05/18/Dagger2%20-%20%E5%9F%BA%E7%A1%80/</loc>
     
     <lastmod>2018-09-30T09:44:07.353Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.welau.top/2018/05/18/Dagger2%20-%20%E5%9F%BA%E7%A1%80/</loc>
+    <loc>https://www.welau.top/2017/11/08/CoordinatorLayout/</loc>
     
     <lastmod>2018-09-30T09:44:07.353Z</lastmod>
     
@@ -331,13 +366,6 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/08/CollapsingToolbarLayout/</loc>
-    
-    <lastmod>2018-09-30T09:44:07.345Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.welau.top/2016/05/22/BroadcastReceiver-%E5%B9%BF%E6%92%AD/</loc>
     
     <lastmod>2018-09-30T09:44:07.345Z</lastmod>
@@ -345,9 +373,9 @@
   </url>
   
   <url>
-    <loc>https://www.welau.top/2017/11/08/AppBarLayout/</loc>
+    <loc>https://www.welau.top/2017/11/08/CollapsingToolbarLayout/</loc>
     
-    <lastmod>2018-09-30T09:44:07.329Z</lastmod>
+    <lastmod>2018-09-30T09:44:07.345Z</lastmod>
     
   </url>
   
@@ -360,6 +388,13 @@
   
   <url>
     <loc>https://www.welau.top/2018/05/06/Android-%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D/</loc>
+    
+    <lastmod>2018-09-30T09:44:07.329Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.welau.top/2017/11/08/AppBarLayout/</loc>
     
     <lastmod>2018-09-30T09:44:07.329Z</lastmod>
     
