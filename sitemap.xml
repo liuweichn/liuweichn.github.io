@@ -121,13 +121,6 @@
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2016/04/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/</loc>
-    
-    <lastmod>2018-09-30T09:44:07.375Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://blog.welau.top/categories/index.html</loc>
     
     <lastmod>2018-09-30T09:44:07.375Z</lastmod>
@@ -135,9 +128,9 @@
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2016/05/28/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://blog.welau.top/2016/04/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/</loc>
     
-    <lastmod>2018-09-30T09:44:07.374Z</lastmod>
+    <lastmod>2018-09-30T09:44:07.375Z</lastmod>
     
   </url>
   
@@ -149,21 +142,14 @@
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
+    <loc>http://blog.welau.top/2016/05/28/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
     
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.welau.top/2018/05/08/robolectric-%E6%B5%8B%E8%AF%95/</loc>
-    
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <lastmod>2018-09-30T09:44:07.374Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2016/07/07/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>http://blog.welau.top/2018/05/08/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/</loc>
     
     <lastmod>2018-09-30T09:44:07.373Z</lastmod>
     
@@ -177,14 +163,28 @@
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2018/05/08/%E5%A4%9A%E6%B8%A0%E9%81%93%E6%89%93%E5%8C%85/</loc>
+    <loc>http://blog.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
     
     <lastmod>2018-09-30T09:44:07.373Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <loc>http://blog.welau.top/2016/07/07/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.welau.top/2018/05/08/robolectric-%E6%B5%8B%E8%AF%95/</loc>
+    
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.welau.top/2015/10/30/hexo%E5%91%BD%E4%BB%A4/</loc>
     
     <lastmod>2018-09-30T09:44:07.372Z</lastmod>
     
@@ -198,9 +198,16 @@
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2015/10/30/hexo%E5%91%BD%E4%BB%A4/</loc>
+    <loc>http://blog.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     
     <lastmod>2018-09-30T09:44:07.372Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.welau.top/2015/11/05/hexo-next%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2/</loc>
+    
+    <lastmod>2018-09-30T09:44:07.369Z</lastmod>
     
   </url>
   
@@ -227,13 +234,6 @@
   
   <url>
     <loc>http://blog.welau.top/2017/05/21/git-%E4%BD%BF%E7%94%A8/</loc>
-    
-    <lastmod>2018-09-30T09:44:07.369Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.welau.top/2015/11/05/hexo-next%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2/</loc>
     
     <lastmod>2018-09-30T09:44:07.369Z</lastmod>
     
@@ -275,14 +275,14 @@
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2017/11/29/RxJava-Retrofit-%E5%AE%8C%E6%88%90%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/</loc>
+    <loc>http://blog.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
     
     <lastmod>2018-09-30T09:44:07.359Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
+    <loc>http://blog.welau.top/2017/11/29/RxJava-Retrofit-%E5%AE%8C%E6%88%90%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/</loc>
     
     <lastmod>2018-09-30T09:44:07.359Z</lastmod>
     
@@ -296,14 +296,14 @@
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2017/11/09/RecyclerView/</loc>
+    <loc>http://blog.welau.top/2016/05/19/Junit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     
     <lastmod>2018-09-30T09:44:07.357Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://blog.welau.top/2016/05/19/Junit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://blog.welau.top/2017/11/09/RecyclerView/</loc>
     
     <lastmod>2018-09-30T09:44:07.357Z</lastmod>
     

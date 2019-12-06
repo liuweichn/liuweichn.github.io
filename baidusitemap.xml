@@ -258,6 +258,7 @@
 
     
     
+    
   <url>
     <loc>http://blog.welau.top/2016/04/16/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%9A%84%E4%BA%94%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/</loc>
     <lastmod>2018-09-30T09:44:07.375Z</lastmod>
@@ -271,22 +272,6 @@
              
               <breadCrumb title="设计" url="http://blog.welau.top/categories/%E8%AE%BE%E8%AE%A1/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://blog.welau.top/2016/05/28/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2018-09-30T09:44:07.374Z</lastmod>
-    <data>
-        <display>
-        <title>排序算法</title>
-        <pubTime>2016-05-28T02:38:56.000Z</pubTime>
-        
-         
-           
         </display>
     </data>
     </url>
@@ -310,60 +295,12 @@
 
     
   <url>
-    <loc>http://blog.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <loc>http://blog.welau.top/2016/05/28/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2018-09-30T09:44:07.374Z</lastmod>
     <data>
         <display>
-        <title>java 线程同步</title>
-        <pubTime>2016-04-09T14:14:10.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.welau.top/2018/05/08/robolectric-%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
-    <data>
-        <display>
-        <title>robolectric-测试</title>
-        <pubTime>2018-05-08T01:46:05.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="android 测试" url="http://blog.welau.top/categories/android-%E6%B5%8B%E8%AF%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.welau.top/2016/07/07/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
-    <data>
-        <display>
-        <title>单例模式</title>
-        <pubTime>2016-07-07T07:30:59.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.welau.top/2016/05/23/%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E8%AE%B2%E8%A7%A3/</loc>
-    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
-    <data>
-        <display>
-        <title>基本知识讲解</title>
-        <pubTime>2016-05-23T02:27:14.000Z</pubTime>
+        <title>排序算法</title>
+        <pubTime>2016-05-28T02:38:56.000Z</pubTime>
         
          
            
@@ -391,13 +328,78 @@
 
     
   <url>
-    <loc>http://blog.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <loc>http://blog.welau.top/2016/05/23/%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E8%AE%B2%E8%A7%A3/</loc>
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <data>
+        <display>
+        <title>基本知识讲解</title>
+        <pubTime>2016-05-23T02:27:14.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.welau.top/2016/04/09/java-%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <data>
+        <display>
+        <title>java 线程同步</title>
+        <pubTime>2016-04-09T14:14:10.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.welau.top/2016/07/07/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <data>
+        <display>
+        <title>单例模式</title>
+        <pubTime>2016-07-07T07:30:59.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.welau.top/2018/05/08/robolectric-%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2018-09-30T09:44:07.373Z</lastmod>
+    <data>
+        <display>
+        <title>robolectric-测试</title>
+        <pubTime>2018-05-08T01:46:05.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="android 测试" url="http://blog.welau.top/categories/android-%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.welau.top/2015/10/30/hexo%E5%91%BD%E4%BB%A4/</loc>
     <lastmod>2018-09-30T09:44:07.372Z</lastmod>
     <data>
         <display>
-        <title>http和https的区别</title>
-        <pubTime>2017-05-25T03:08:32.000Z</pubTime>
+        <title>hexo常用命令</title>
+        <pubTime>2015-10-30T01:59:03.000Z</pubTime>
         
+        <tag>hexo 教程</tag>
+         
          
            
         </display>
@@ -423,12 +425,27 @@
 
     
   <url>
-    <loc>http://blog.welau.top/2015/10/30/hexo%E5%91%BD%E4%BB%A4/</loc>
+    <loc>http://blog.welau.top/2017/05/25/http%E5%92%8Chttps%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
     <lastmod>2018-09-30T09:44:07.372Z</lastmod>
     <data>
         <display>
-        <title>hexo常用命令</title>
-        <pubTime>2015-10-30T01:59:03.000Z</pubTime>
+        <title>http和https的区别</title>
+        <pubTime>2017-05-25T03:08:32.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.welau.top/2015/11/05/hexo-next%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2/</loc>
+    <lastmod>2018-09-30T09:44:07.369Z</lastmod>
+    <data>
+        <display>
+        <title>hexo+next添加algolia搜索</title>
+        <pubTime>2015-11-05T07:26:19.000Z</pubTime>
         
         <tag>hexo 教程</tag>
          
@@ -500,23 +517,6 @@
         <title>git 使用</title>
         <pubTime>2017-05-21T02:44:33.000Z</pubTime>
         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.welau.top/2015/11/05/hexo-next%E6%B7%BB%E5%8A%A0algolia%E6%90%9C%E7%B4%A2/</loc>
-    <lastmod>2018-09-30T09:44:07.369Z</lastmod>
-    <data>
-        <display>
-        <title>hexo+next添加algolia搜索</title>
-        <pubTime>2015-11-05T07:26:19.000Z</pubTime>
-        
-        <tag>hexo 教程</tag>
-         
          
            
         </display>
@@ -614,12 +614,12 @@
 
     
   <url>
-    <loc>http://blog.welau.top/2017/11/29/RxJava-Retrofit-%E5%AE%8C%E6%88%90%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/</loc>
+    <loc>http://blog.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
     <lastmod>2018-09-30T09:44:07.359Z</lastmod>
     <data>
         <display>
-        <title>RxJava + Retrofit 完成网络请求</title>
-        <pubTime>2017-11-29T07:14:29.000Z</pubTime>
+        <title>SmartRefreshLayout 刷新加载数据（listview，recycleview，webivew...）</title>
+        <pubTime>2018-04-12T03:10:56.000Z</pubTime>
         
          
            
@@ -629,12 +629,12 @@
 
     
   <url>
-    <loc>http://blog.welau.top/2018/04/12/SmartRefreshLayout-%E5%88%B7%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE%EF%BC%88listview%EF%BC%8Crecycleview%EF%BC%8Cwebivew-%EF%BC%89/</loc>
+    <loc>http://blog.welau.top/2017/11/29/RxJava-Retrofit-%E5%AE%8C%E6%88%90%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82/</loc>
     <lastmod>2018-09-30T09:44:07.359Z</lastmod>
     <data>
         <display>
-        <title>SmartRefreshLayout 刷新加载数据（listview，recycleview，webivew...）</title>
-        <pubTime>2018-04-12T03:10:56.000Z</pubTime>
+        <title>RxJava + Retrofit 完成网络请求</title>
+        <pubTime>2017-11-29T07:14:29.000Z</pubTime>
         
          
            
@@ -659,12 +659,12 @@
 
     
   <url>
-    <loc>http://blog.welau.top/2017/11/09/RecyclerView/</loc>
+    <loc>http://blog.welau.top/2016/05/19/Junit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2018-09-30T09:44:07.357Z</lastmod>
     <data>
         <display>
-        <title>RecyclerView</title>
-        <pubTime>2017-11-09T02:19:37.000Z</pubTime>
+        <title>Junit 单元测试</title>
+        <pubTime>2016-05-19T11:14:51.000Z</pubTime>
         
          
            
@@ -674,12 +674,12 @@
 
     
   <url>
-    <loc>http://blog.welau.top/2016/05/19/Junit-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <loc>http://blog.welau.top/2017/11/09/RecyclerView/</loc>
     <lastmod>2018-09-30T09:44:07.357Z</lastmod>
     <data>
         <display>
-        <title>Junit 单元测试</title>
-        <pubTime>2016-05-19T11:14:51.000Z</pubTime>
+        <title>RecyclerView</title>
+        <pubTime>2017-11-09T02:19:37.000Z</pubTime>
         
          
            
