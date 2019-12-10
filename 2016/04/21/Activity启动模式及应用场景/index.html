@@ -339,17 +339,6 @@
 
           
             
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2016/04/21/Activity启动模式及应用场景/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2016/04/21/Activity启动模式及应用场景/" itemprop="commentsCount"></span>
-                </a>
-              
-            
           
 
           
@@ -361,7 +350,7 @@
 
           
 
-        </span></div>
+        </div>
       </header>
     
 
@@ -414,7 +403,7 @@
 	  
 		<div>
     
-        <div style="text-align:center;color: #CCC;font-size:14px;">-------------本文结束,感谢阅读-------------</div>
+        <div style="text-align:center;color: #CCC;font-size:14px;">------------- 本文结束，感谢阅读 -------------</div>
     
 </div>
 	  
@@ -515,7 +504,7 @@
 
   
     <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC80Nzg4NC8yNDM4MQ=="></div>
+      <div id="SOHUCS"></div>
     </div>
 
   
@@ -646,11 +635,12 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">粤ICP备19123192号</span>
+
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">卤蛋也固执</span>
+  <span id="busuanzi_value_site_uv"></span>
 
   <span class="with-love">
     <i class="fa fa-eye"></i>
@@ -793,41 +783,33 @@
 
 
   
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
 
 
 
 
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cyuzIa6uw';
-      var conf = '9a06db564cbfa8d2f3c3455b69550b22';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
 
 
 
 
 
 
+  
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/xcss/valine@v1.1.7-rc3/dist/Valine.min.js"></script>
+  <script type="text/javascript">
+    new Valine({
+        av: AV,
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        app_id: 'e8dDH2FSaQP4mvSSeRGcYD1p-gzGzoHsz',
+        app_key: '1cL5ABbDR5wEfywmxJws0I3v',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'',
+        pageSize:'10' || 10,
+        avatar_cdn:'https://www.gravatar.com/avatar/',
+    });
+  </script>
 
 
 
